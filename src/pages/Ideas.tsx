@@ -7,6 +7,8 @@ import { IoIosArrowDown } from "react-icons/io";
 import { FiSearch } from "react-icons/fi";
 import { MdClose } from "react-icons/md";
 import { MutatingDots } from "react-loader-spinner";
+import { BsArrowDown, BsArrowRight, BsArrowUp } from "react-icons/bs";
+import { Link } from "react-router-dom";
 
 interface Filter {
   category: string | null;
@@ -18,6 +20,7 @@ export default function Ideas() {
   const [openId, setOpenId] = useState<string | null>(null);
   const [openFilter, setOpenFilter] = useState<boolean>(false);
   const [search, setSearch] = useState<string | null>(null);
+  const [more, setMore] = useState<boolean>(false);
   const [filters, setFilters] = useState<Filter>({
     category: null,
     language: null,
@@ -186,56 +189,89 @@ export default function Ideas() {
 
       <div className="py-5">
         {filteredData && filteredData.length > 0 ? (
-          filteredData.map((idea: Idea, index) => (
-            <div
-              key={idea._id || index}
-              onClick={() => setOpenId(openId === idea._id ? null : idea._id)}
-              className={`my-10 p-5 cursor-pointer hover:bg-black/5 duration-300 md:w-[60%] m-auto text-center`}
-            >
-              <h3>{idea.title}</h3>
-              <p className="text-gray-500 line-clamp-2 font-[300] text-sm my-1">
-                {idea.content}
-              </p>
-              <span className="text-gray-500 font-[300] text-sm">
-                Создано: {idea.date}
-              </span>
+          <div>
+            {filteredData
+              .slice(0, more ? filteredData.length : 5)
+              .map((idea: Idea, index) => (
+                <div
+                  key={idea._id || index}
+                  onClick={() =>
+                    setOpenId(openId === idea._id ? null : idea._id)
+                  }
+                  className={`my-10 p-5 cursor-pointer hover:bg-black/5 duration-300 md:w-[60%] m-auto text-center`}
+                >
+                  <h3>{idea.title}</h3>
+                  <p className="text-gray-500 font-[300] text-sm my-1">
+                    {idea.content}
+                  </p>
+                  <span className="text-gray-500 font-[300] text-sm">
+                    Создано: {idea.date}
+                  </span>
 
-              <div
-                className={
-                  openId === idea._id
-                    ? " duration-300 max-h-[550px]"
-                    : "max-h-0 overflow-hidden duration-300"
-                }
-              >
-                <div className="my-1">
-                  {idea.device.map((c: string, idx: number) => (
-                    <Tag color="green" key={idx}>
-                      {c}
-                    </Tag>
-                  ))}
+                  <div
+                    className={
+                      openId === idea._id
+                        ? " duration-300 max-h-[550px]"
+                        : "max-h-0 overflow-hidden duration-300"
+                    }
+                  >
+                    <div className="my-1">
+                      {idea.device.map((c: string, idx: number) => (
+                        <Tag color="green" key={idx}>
+                          {c}
+                        </Tag>
+                      ))}
+                    </div>
+                    <div className="my-1">
+                      {idea.languages.map((c: string, idx: number) => (
+                        <Tag color="blue" key={idx}>
+                          {c}
+                        </Tag>
+                      ))}
+                    </div>
+                    <div className="my-3">
+                      <Steps
+                        direction="vertical"
+                        items={idea.steps.map((s, idx) => ({
+                          title: s,
+                          key: idx,
+                        }))}
+                      />
+                    </div>
+                  </div>
                 </div>
-                <div className="my-1">
-                  {idea.languages.map((c: string, idx: number) => (
-                    <Tag color="blue" key={idx}>
-                      {c}
-                    </Tag>
-                  ))}
-                </div>
-                <div className="my-3">
-                  <Steps
-                    direction="vertical"
-                    items={idea.steps.map((s, idx) => ({
-                      title: s,
-                      key: idx,
-                    }))}
-                  />
-                </div>
+              ))}
+            {filteredData.length > 5 && (
+              <div className="w-full flex inset-0 pb-5">
+                <button
+                  onClick={() => setMore(!more)}
+                  className="bg-[#000] text-[#F0E5CF] px-4 py-2 rounded-[2px] m-auto hover:bg-gray-900 transition-colors duration-300"
+                >
+                  {more ? (
+                    <span className=" flex items-center gap-4 ">
+                      Меньше <BsArrowUp />
+                    </span>
+                  ) : (
+                    <span className=" flex items-center gap-4 ">
+                      {" "}
+                      Больше <BsArrowDown />{" "}
+                    </span>
+                  )}
+                </button>
               </div>
-            </div>
-          ))
+            )}
+          </div>
         ) : (
           <Empty />
         )}
+      </div>
+      <div className="md:w-[80%] py-10 flex flex-col inset-0 m-auto text-center">
+        <p>
+        Хотите разнообразить свой творческий процесс или пока не нашли подходящую идею? Нажмите на ссылку ниже, чтобы получить случайную идею проекта и открыть для себя новые возможности творчества!
+        </p>
+        <Link to="/random" className="pt-10 flex items-center gap-4 px-4 py-2 rounded-[2px] m-auto text-[#4B6587] transition-colors duration-300">
+          Получить случайную идею проекта <BsArrowRight/>
+        </Link>
       </div>
     </div>
   );
