@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+h1 {
+  font-size: 48px;
+  text-align: center;
+  padding: 10px 0;
+}
+h2 {
+  font-size: 32px;
+  text-align: left;
+  padding: 1rem 5rem;
+}
