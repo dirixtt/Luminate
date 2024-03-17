@@ -19,9 +19,9 @@ export default function Ideas() {
   const [openFilter, setOpenFilter] = useState<boolean>(false);
   const [search, setSearch] = useState<string | null>(null);
   const [filters, setFilters] = useState<Filter>({
-    category: "",
-    language: "",
-    device: "",
+    category: null,
+    language: null,
+    device: null,
   });
 
   const { isLoading, error, data } = useQuery<Idea[], Error>({
@@ -45,20 +45,15 @@ export default function Ideas() {
     return (
       (!category || idea.category.includes(category)) &&
       (!language || idea.languages.includes(language)) &&
-      (!device || idea.device.includes(device))
+      (!device || idea.device.includes(device)) &&
+      (!search ||
+        idea.title.toLowerCase().includes(search.toLowerCase()) ||
+        idea.content.toLowerCase().includes(search.toLowerCase()))
     );
   });
 
-  const filteredSearchData = filteredData?.filter((idea: Idea) => {
-    if (!search) return true; // If no search term, include all ideas
-    return (
-      idea.title.toLowerCase().includes(search.toLowerCase()) ||
-      idea.content.toLowerCase().includes(search.toLowerCase())
-    );
-  });
-
-  const Languages: string[] = ["JavaScript", "Python", "Swift", "HTML/CSS"];
-  const Categories: string[] = [
+  const uniqueLanguages = ["JavaScript", "Python", "Swift", "HTML/CSS"];
+  const uniqueCategories = [
     "Фитнес",
     "Здоровье",
     "Питание",
@@ -67,31 +62,45 @@ export default function Ideas() {
     "Ментальное благополучие",
     "Личное развитие",
     "Финансы",
-    "Погода",
-    "Новости",
-    "Информация",
-    "Производительность",
+    "Музыка",
+    "Эмоции",
+    "Кулинария",
+    "Образование",
+    "Технологии",
     "Мотивация",
+    "Книги",
+    "Рекомендации",
+    "Путешествия",
+    "Социальные сети",
+    "Локальные сообщества",
+    "Искусство",
+    "Культура",
   ];
-  const Devices: string[] = ["мобильное", "веб", "десктоп"];
+
+  const uniqueDevices = ["мобильное", "веб"];
 
   const handleSearch = () => {
     if (search) {
       setSearch(null);
     }
   };
+
   if (isLoading) {
-    return <div className="w-full py-10 flex items-center justify-center"><MutatingDots
-    visible={true}
-    height="100"
-    width="100"
-    color="#000"
-    secondaryColor="#000"
-    radius="12.5"
-    ariaLabel="mutating-dots-loading"
-    wrapperStyle={{}}
-    wrapperClass=""
-    /></div>;
+    return (
+      <div className="w-full py-10 flex items-center justify-center">
+        <MutatingDots
+          visible={true}
+          height="100"
+          width="100"
+          color="#000"
+          secondaryColor="#000"
+          radius="12.5"
+          ariaLabel="mutating-dots-loading"
+          wrapperStyle={{}}
+          wrapperClass=""
+        />
+      </div>
+    );
   }
 
   if (error) {
@@ -142,9 +151,9 @@ export default function Ideas() {
             onChange={(e) => handleFilterChange("category", e.target.value)}
           >
             <option value="">Все Категории</option>
-            {Categories.map((l: string) => (
-              <option value={l} key={l}>
-                {l}
+            {uniqueCategories.map((category: string) => (
+              <option value={category} key={category}>
+                {category}
               </option>
             ))}
           </select>
@@ -154,9 +163,9 @@ export default function Ideas() {
             onChange={(e) => handleFilterChange("language", e.target.value)}
           >
             <option value="">Все Языки</option>
-            {Languages.map((l: string) => (
-              <option value={l} key={l}>
-                {l}
+            {uniqueLanguages.map((language: string) => (
+              <option value={language} key={language}>
+                {language}
               </option>
             ))}
           </select>
@@ -165,10 +174,10 @@ export default function Ideas() {
             defaultValue=""
             onChange={(e) => handleFilterChange("device", e.target.value)}
           >
-            <option value="">Все Устроиства</option>
-            {Devices.map((l: string) => (
-              <option value={l} key={l}>
-                {l}
+            <option value="">Все Устройства</option>
+            {uniqueDevices.map((device: string) => (
+              <option value={device} key={device}>
+                {device}
               </option>
             ))}
           </select>
@@ -176,8 +185,8 @@ export default function Ideas() {
       </div>
 
       <div className="py-5">
-        {filteredSearchData && filteredSearchData?.length > 0 ? (
-          filteredSearchData?.map((idea: Idea, index) => (
+        {filteredData && filteredData.length > 0 ? (
+          filteredData.map((idea: Idea, index) => (
             <div
               key={idea._id || index}
               onClick={() => setOpenId(openId === idea._id ? null : idea._id)}
@@ -193,7 +202,7 @@ export default function Ideas() {
 
               <div
                 className={
-                  openId === idea?._id
+                  openId === idea._id
                     ? " duration-300 max-h-[550px]"
                     : "max-h-0 overflow-hidden duration-300"
                 }
