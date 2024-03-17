@@ -2,7 +2,7 @@ export default function Main() {
   return (
     <div className="container">
       <h1>О нас</h1>
-      <p className="mb-8 text-justify px-20">
+      <p className="mb-8 text-justify md:px-20">
         Приветствуем вас на{" "}
         <span className="border-b-4 cursor-pointer border-[#4B6587]"> Luminate</span> – вашем
         источнике непрерывного вдохновения в мире программирования и творчества!
@@ -10,7 +10,7 @@ export default function Main() {
         программистскую жизнь удивительными идеями проектов.
       </p>
   
-      <p className="mb-8 px-20 text-justify">
+      <p className="mb-8 md:px-20 text-justify">
         Наша миссия – подарить вам каждый день новую порцию вдохновения и
         стимулировать вашу творческую энергию. Мы уверены, что каждый проект
         начинается с маленькой идеи, и мы здесь, чтобы помочь вам найти именно
@@ -22,8 +22,8 @@ export default function Main() {
           alt=""
         />
       </div>
-      <h2>Вдохновение в каждом пикселе</h2>
-      <p className="mb-8 px-20 text-justify">
+      <h2 className="py-[1rem] md:px-[5rem]">Вдохновение в каждом пикселе</h2>
+      <p className="mb-8 md:px-20 text-justify">
         Мы не просто предлагаем идеи для проектов - мы создаем вдохновляющие
         образы, которые заставляют ваше творчество оживать. Наши фотографии,
         иллюстрации и дизайнерские концепции - это источник неиссякаемого
@@ -36,8 +36,8 @@ export default function Main() {
           alt=""
         />
       </div>
-      <h2>Идеи, которые меняют мир</h2>
-      <p className="mb-8 px-20 text-justify">
+      <h2 className="py-[1rem] md:px-[5rem]">Идеи, которые меняют мир</h2>
+      <p className="mb-8 md:px-20 text-justify">
         Мы собираем идеи для проектов со всех уголков интернета и выносим их к
         вам на блюдечке. От простых мобильных приложений до сложных
         алгоритмических задач - у нас есть идеи для всех уровней навыков и

@@ -104,8 +104,8 @@ export default function Ideas() {
       <h2 className="m-auto text-center">
         "Идеи для Кодера: Инновации Каждый День"
       </h2>
-      <div className="m-auto flex items-center justify-center gap-5 my-10 h-12 ">
-        <div className="flex h-full">
+      <div className="m-auto flex flex-col md:flex-row items-center justify-center gap-5 my-10 ">
+        <div className="flex h-12">
           <input
             onChange={(e) => setSearch(e.target.value)}
             value={search || ""}
@@ -121,7 +121,7 @@ export default function Ideas() {
         </div>
         <button
           onClick={() => setOpenFilter(!openFilter)}
-          className="bg-[#C8C6C6] px-2 h-full flex items-center border-[#C8C6C6] border-2"
+          className="bg-[#C8C6C6] w-full md:w-fit px-2 h-12 flex items-center border-[#C8C6C6] border-2"
         >
           Фильтр <IoIosArrowDown />
         </button>
@@ -130,14 +130,14 @@ export default function Ideas() {
       <div
         className={`flex flex-col gap-y-5 ${
           openFilter
-            ? "max-h-[100px] duration-300"
+            ? "max-h-[200px] md:max-h-[100px] duration-300"
             : "max-h-0 overflow-hidden duration-300"
         }`}
       >
         <h3>Фильтр</h3>
-        <div className="gap-10 h-12 w-full flex items-center justify-between">
+        <div className="gap-10 md:h-12 w-full flex flex-col md:flex-row items-center justify-between">
           <select
-            className="px-2 w-1/3 bg-transparent outline-none border-black border-2 h-full"
+            className="px-2 w-full md:w-1/3 bg-transparent outline-none border-black border-2 h-full"
             defaultValue=""
             onChange={(e) => handleFilterChange("category", e.target.value)}
           >
@@ -150,7 +150,7 @@ export default function Ideas() {
           </select>
           <select
             defaultValue=""
-            className="px-2 w-1/3 bg-transparent outline-none border-black border-2 h-full"
+            className="px-2 w-full md:w-1/3 bg-transparent outline-none border-black border-2 h-full"
             onChange={(e) => handleFilterChange("language", e.target.value)}
           >
             <option value="">Все Языки</option>
@@ -161,7 +161,7 @@ export default function Ideas() {
             ))}
           </select>
           <select
-            className="px-2 w-1/3 bg-transparent outline-none border-black border-2 h-full"
+            className="px-2 w-full md:w-1/3 bg-transparent outline-none border-black border-2 h-full"
             defaultValue=""
             onChange={(e) => handleFilterChange("device", e.target.value)}
           >

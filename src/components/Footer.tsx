@@ -6,7 +6,7 @@ export default function Footer() {
   return (
     <footer className=" text-black/80 py-10 border-t-[3px]">
       <h3 className="text-center ">Социальные сети</h3>
-      <ul className="flex mt-3 items-center justify-center gap-10">
+      <ul className="flex md:flex-row flex-col mt-3 items-center justify-center gap-10">
         <li>
           <Link className="flex items-center gap-3" to="">
             <BsInstagram /> @Luminate
@@ -23,7 +23,7 @@ export default function Footer() {
           </Link>
         </li>
       </ul>
-      <p className="text-[#8e8e8e] w-[50%] text-center font-[300] m-auto my-5 text-sm">
+      <p className="text-[#8e8e8e] w-[85%] md:w-[50%] text-center font-[300] m-auto my-5 text-sm">
         Подписывайтесь на наши социальные сети, чтобы быть в курсе всех
         последних новостей, обновлений и конкурсов!
       </p>
