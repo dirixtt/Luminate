@@ -117,11 +117,11 @@ export default function Ideas() {
         "Идеи для Кодера: Инновации Каждый День"
       </h2>
       <div className="m-auto flex flex-col md:flex-row items-center justify-center gap-5 my-10 ">
-        <div className="flex h-12">
+        <div className="flex w-full md:w-fit h-12">
           <input
             onChange={(e) => setSearch(e.target.value)}
             value={search || ""}
-            className="px-2 bg-transparent outline-none border-black border-2 h-full"
+            className="px-2 w-4/5 bg-transparent outline-none border-black border-2 h-full"
             type="text"
           />
           <button
@@ -198,7 +198,7 @@ export default function Ideas() {
                   onClick={() =>
                     setOpenId(openId === idea._id ? null : idea._id)
                   }
-                  className={`my-10 p-5 cursor-pointer hover:bg-black/5 duration-300 md:w-[60%] m-auto text-center`}
+                  className={`my-10 p-5 cursor-pointer hover:bg-black/5 duration-300 md:w-[60%] m-auto text-center ${openId == idea._id ? "bg-black/5 rounded" : "bg-transparent"}`}
                 >
                   <h3>{idea.title}</h3>
                   <p className="text-gray-500 font-[300] text-sm my-1">
@@ -211,7 +211,7 @@ export default function Ideas() {
                   <div
                     className={
                       openId === idea._id
-                        ? " duration-300 max-h-[550px]"
+                        ? " duration-300 max-h-[5050px]"
                         : "max-h-0 overflow-hidden duration-300"
                     }
                   >
