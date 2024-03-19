@@ -121,12 +121,12 @@ export default function Ideas() {
           <input
             onChange={(e) => setSearch(e.target.value)}
             value={search || ""}
-            className="px-2 w-[70%] bg-transparent outline-none border-black border-2 h-full"
+            className="px-2 w-[80%] bg-transparent outline-none border-black border-2 h-full"
             type="text"
           />
           <button
             onClick={handleSearch}
-            className="px-5 bg-[#000] w-[27%] md:w-fit text-[#F0E5CF] h-full border-black border-2"
+            className="px-5 bg-[#000] w-[17%] flex items-center justify-center  md:w-fit text-[#F0E5CF] h-full border-black border-2"
           >
             {search ? <MdClose /> : <FiSearch />}
           </button>
