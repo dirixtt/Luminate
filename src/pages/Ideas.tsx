@@ -6,9 +6,9 @@ import { useState } from "react";
 import { IoIosArrowDown } from "react-icons/io";
 import { FiSearch } from "react-icons/fi";
 import { MdClose } from "react-icons/md";
-import { MutatingDots } from "react-loader-spinner";
 import { BsArrowDown, BsArrowRight, BsArrowUp } from "react-icons/bs";
 import { Link } from "react-router-dom";
+import Loader from "../components/Loader";
 
 interface Filter {
   category: string | null;
@@ -90,19 +90,7 @@ export default function Ideas() {
 
   if (isLoading) {
     return (
-      <div className="w-full py-10 flex items-center justify-center">
-        <MutatingDots
-          visible={true}
-          height="100"
-          width="100"
-          color="#000"
-          secondaryColor="#000"
-          radius="12.5"
-          ariaLabel="mutating-dots-loading"
-          wrapperStyle={{}}
-          wrapperClass=""
-        />
-      </div>
+    <Loader/>
     );
   }
 

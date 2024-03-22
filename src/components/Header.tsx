@@ -25,6 +25,16 @@ export default function Header() {
             Идеи
           </NavLink>
         </li>
+        <li>
+          <NavLink
+            to={"/generate"}
+            className={({isActive}) =>
+              isActive ? "bg-[#4B6587] text-white py-2 px-2" : " bg-[#4B6587] text-white py-2 px-2"
+            }
+          >
+            ИИ в деле
+          </NavLink>
+        </li>
       </ul>
     </header>
   );

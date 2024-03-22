@@ -11,3 +11,20 @@ h2 {
   text-align: left;
   /* padding: 1rem 5rem; */
 }
+.form input {
+  padding: 5px 20px;
+  font-size: large;
+  background: transparent;
+  border: 1px solid black;
+  outline: none;
+  color: black;
+}
+
+.form .ant-select-selector {
+  padding: 10px 20px !important;
+  font-size: large !important;
+  background: transparent !important;
+  border: 1px solid black !important;
+  outline: none !important;
+  color: black !important;
+}

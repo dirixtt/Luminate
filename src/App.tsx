@@ -13,6 +13,7 @@ import Footer from "./components/Footer";
 import { QueryClient, QueryClientProvider } from "react-query";
 import Ideas from "./pages/Ideas";
 import Random from "./pages/Random";
+import Ai from "./pages/Ai";
 const queryClient = new QueryClient();
 function App() {
   const router = createBrowserRouter([
@@ -24,6 +25,7 @@ function App() {
         { path: "/", element: <Main /> },
         { path: "/ideas", element: <Ideas /> },
         { path: "/random", element: <Random /> },
+        { path: "/generate", element: <Ai /> },
       ],
     },
   ]);
